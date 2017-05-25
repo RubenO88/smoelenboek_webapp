@@ -1,14 +1,30 @@
 <ion-header>
-  <ion-navbar>
+  <ion-navbar color="primary">
     <ion-title>
-      Ionic Blank
+      Smoelenboek
     </ion-title>
   </ion-navbar>
 </ion-header>
 
-<ion-content padding>
-  The world is your oyster.
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will be your guide.
-  </p>
+<ion-content no-padding>
+
+  <ion-list [virtualScroll]="departmentContacts | departmentSplitPipe" [headerFn]="getHeaderData">
+    <!--<ion-item *ngIf="isLoading">-->
+      <!--<ion-spinner name='crescent' item-start></ion-spinner>-->
+      <!--<p>Contacten laden</p>-->
+    <!--</ion-item>-->
+
+    <ion-item-divider color="light" text-capitalize *virtualHeader="let header">{{header}}</ion-item-divider>
+
+    <ion-item *virtualItem="let contact">
+        <ion-avatar item-start>
+          <img src="http://fanaru.com/the-hobbit-an-unexpected-journey/image/93544-the-hobbit-an-unexpected-journey-gollum-avatar.jpg">
+        </ion-avatar>
+        <h2 class="nameLabel">{{contact.data.firstname + ' ' + contact.data.lastname}}</h2>
+        <a href="mailto:{{contact.data.emailaddress}}" item-end ion-button icon-only clear large>
+          <ion-icon name="mail"></ion-icon>
+        </a>
+      </ion-item>
+  </ion-list>
+
 </ion-content>
