@@ -21,7 +21,8 @@ export class DepartmentSplitPipe implements PipeTransform {
           let contactObj = {
                             departmentId: departmentId,
                             showHeader: false,
-                            data: contactsOfDepartment[contactIndex]
+                            data: contactsOfDepartment[contactIndex],
+                            index: contactIndex
                             };
           //if first in group, than show the header of that department
           //for..in get's string indices
@@ -31,7 +32,6 @@ export class DepartmentSplitPipe implements PipeTransform {
           keys.push(contactObj);
         }
       }
-      console.log(keys);
       return keys;
   }
 }

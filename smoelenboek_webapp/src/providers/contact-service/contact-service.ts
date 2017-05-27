@@ -45,6 +45,23 @@ export class ContactServiceProvider {
     this.storage.set('departmentContacts', stringData);
   }
 
+  getContactDetails(deptId, index): object {
+    //no check required if data exists because otherwise you can't get to the details page
+    let department = this.departmentContacts[deptId];
+    let returnObj: object = {};
+    if (department !== null) {
+      let contact: object = department[index];
+      if (contact !== null) {
+        returnObj = contact;
+      }
+    }
+    else {
+      console.log("Contact does not exists");
+    }
+    console.log("Contact object:", returnObj);
+    return returnObj;
+  }
+
   isLoading: boolean = false;
   departmentContacts = {
                         "ios": [{

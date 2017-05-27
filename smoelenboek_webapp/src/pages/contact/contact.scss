@@ -1,0 +1,41 @@
+page-contact {
+  #contact-item {
+    background: color($colors, secondary);
+
+    .details-row {
+
+      .wrap-details {
+        overflow: hidden;
+
+        > div {
+          white-space: nowrap;
+          text-overflow: ellipsis;
+          overflow: hidden;
+        }
+      }
+    }
+  }
+
+   #avatar-row {
+    justify-content: center;
+    display: -webkit-flex;
+    background: -webkit-linear-gradient(#fff 100px, color($colors, secondary, contrast) 100px);
+    top: -2px; //To cover the background color;
+    position: relative;
+
+    .button-col {
+      display: flex;
+      align-self: flex-end;
+      justify-content: center;
+      bottom: 25px;
+    }
+
+    img {
+      border-radius: 50%;
+      height: 200px;
+      width: 200px;
+      border: darken(color($colors, secondary), 20%) 6px solid;
+      align-self: center;
+    }
+  }
+}

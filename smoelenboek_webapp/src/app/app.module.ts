@@ -8,6 +8,7 @@ import { HttpModule } from '@angular/http';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
+import { ContactPage } from '../pages/contact/contact';
 import { DepartmentSplitPipe } from '../pipes/department-split-pipe/department-split-pipe';
 import { ContactServiceProvider } from '../providers/contact-service/contact-service';
 
@@ -15,6 +16,7 @@ import { ContactServiceProvider } from '../providers/contact-service/contact-ser
   declarations: [
     MyApp,
     HomePage,
+    ContactPage,
     DepartmentSplitPipe
   ],
   imports: [
@@ -26,7 +28,8 @@ import { ContactServiceProvider } from '../providers/contact-service/contact-ser
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
-    HomePage
+    HomePage,
+    ContactPage
   ],
   providers: [
     StatusBar,

@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController } from 'ionic-angular';
+import { ModalController } from 'ionic-angular';
 import { ContactServiceProvider } from '../../providers/contact-service/contact-service';
+import { ContactPage } from '../contact/contact';
 
 @Component({
   selector: 'page-home',
@@ -11,7 +12,7 @@ export class HomePage {
   departmentContacts: object;
   isLoading: boolean;
 
-  constructor(public navCtrl: NavController, private contactServiceProvider: ContactServiceProvider) {
+  constructor(public modalCtrl: ModalController, public contactServiceProvider: ContactServiceProvider) {
     this.departmentContacts = contactServiceProvider.getContacts();
     this.isLoading = contactServiceProvider.getIsLoading();
   }
@@ -23,6 +24,18 @@ export class HomePage {
     else {
       return null;
     }
+  }
+
+  showDetailsModal(event, departmentId, index) {
+    console.log("contact from department %s with %s clicked", departmentId, index);
+    event.stopPropagation();
+    let detailsModal = this.modalCtrl.create(ContactPage, {departmentId: departmentId, index: index});
+    detailsModal.present();
+  }
+
+  sendMail(event, mailAddress) {
+    event.stopPropagation();
+    window.open("mailto:" + mailAddress);
   }
 }
 

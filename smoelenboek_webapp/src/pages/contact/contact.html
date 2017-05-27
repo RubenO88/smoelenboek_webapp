@@ -1,0 +1,47 @@
+<ion-header>
+  <ion-navbar color="secondary">
+    <ion-title>
+      Medewerker
+    </ion-title>
+    <ion-buttons end>
+      <button ion-button icon-only (click)="closeModal()">
+        <ion-icon name="close"></ion-icon>
+      </button>
+    </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<ion-content padding-vertical>
+  <ion-grid id="contact-item" no-padding>
+    <ion-row id="avatar-row" no-padding>
+      <ion-col class="button-col">
+        <button ion-fab color="primary" (click)="call()">
+          <ion-icon name="call"></ion-icon>
+        </button>
+      </ion-col>
+      <ion-col col-auto>
+        <img src="http://fanaru.com/the-hobbit-an-unexpected-journey/image/93544-the-hobbit-an-unexpected-journey-gollum-avatar.jpg">
+      </ion-col>
+      <ion-col class="button-col">
+        <button ion-fab color="danger" (click)="sendMail($event, contactInfo.emailaddress)">
+          <ion-icon name="mail"></ion-icon>
+        </button>
+      </ion-col>
+    </ion-row>
+
+    <ion-row margin nowrap class="details-row">
+      <ion-col col-auto margin-right>
+        <div>Afdeling:</div>
+        <div>Voornaam:</div>
+        <div>Achternaam:</div>
+        <div>E-mail:</div>
+      </ion-col>
+      <ion-col class="wrap-details">
+        <div>{{department}}</div>
+        <div>{{contactInfo.firstname}}</div>
+        <div>{{contactInfo.lastname}}</div>
+        <div>{{contactInfo.emailaddress}}</div>
+      </ion-col>
+    </ion-row>
+  </ion-grid>
+</ion-content>
