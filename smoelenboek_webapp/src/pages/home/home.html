@@ -26,9 +26,15 @@
       </button>
     </button>
   </ion-list>
+
   <ion-item *ngIf="isLoading">
     <ion-spinner name='crescent' item-start></ion-spinner>
     <p>Contacten laden</p>
+  </ion-item>
+
+  <ion-item *ngIf="isError">
+    <ion-icon name="bug" item-start color="danger"></ion-icon>
+    <p>{{errorMessage}}</p>
   </ion-item>
 
 </ion-content>

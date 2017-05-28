@@ -9,15 +9,26 @@ import { ContactPage } from '../contact/contact';
 })
 
 export class HomePage {
-  departmentContacts;
-  isLoading: boolean = true
+  departmentContacts: object;
+  errorMessage: string;
+  isLoading: boolean = true;
+  isError: boolean = false;
 
   constructor(public modalCtrl: ModalController, public contactServiceProvider: ContactServiceProvider) {
-    contactServiceProvider.getContacts().then((contactData) => {
-      this.departmentContacts = contactData;
-      console.log("contactData", contactData);
-      this.isLoading = false;
-    });
+    contactServiceProvider.getContacts()
+      .then(this._displayData.bind(this))
+      .catch(this._showMessageRow.bind(this));
+  }
+
+  private _displayData(contactData) {
+    this.departmentContacts = contactData;
+    this.isLoading = false;
+  }
+
+  private _showMessageRow(error) {
+    this.isLoading = false;
+    this.isError = true;
+    this.errorMessage = error;
   }
 
   getHeaderData(record, recordIndex, records): object {

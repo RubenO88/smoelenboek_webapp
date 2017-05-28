@@ -3,6 +3,7 @@ import { Http } from '@angular/http';
 import { Storage} from '@ionic/storage';
 import 'rxjs/add/operator/toPromise';
 
+const storageKey: string = "departmentContacts";
 /*
   Generated class for the ContactServiceProvider provider.
 
@@ -13,54 +14,62 @@ import 'rxjs/add/operator/toPromise';
 export class ContactServiceProvider {
   departmentContacts: object[];
 
-  constructor(public http: Http, public storage: Storage) {
-    // this._checkStorageValue("notValid");
-  }
+  constructor(public http: Http, public storage: Storage) {}
 
-  public getContacts() {
+  public getContacts(): Promise<any> {
     return this._getContacts();
   }
 
-  private _getContacts() {
-    return this.http.get("api/api.php")
-      .toPromise()
-      .then(this._processData.bind(this))
-      .catch(this._processError.bind(this));
+  private _getContacts(): Promise<any> {
+    return this._checkStorageValue(storageKey)
+      .catch((error) => {
+        console.log("Storage error:", error);
+        console.log("Try api to get data...");
+        return this.http.get("api/api.php")
+          .toPromise()
+            .then(this._processData.bind(this))
+            .catch(this._processError.bind(this));
+      })
+      .then((data) => {
+        //Store data in provider and resolve promise again
+        this.departmentContacts = data;
+        return Promise.resolve(this.departmentContacts);
+      })
   }
 
-  private _checkStorageValue(key) {
+  private _checkStorageValue(key): Promise<any> {
     return this._isStorageReady()
       .then((storageInfo) => {
         return this.storage.get(key)
-          .then((successData) => {
-            console.log("fetched data from storage", successData);
-            this.departmentContacts = successData;
-            return successData;
+          .then((value) => {
+            console.log("fetched data from storage");
+            if (value !== null) {
+              return JSON.parse(value);
+            }
+            else {
+              return Promise.reject("Value for key \"" + key + "\" not available or null");
+            }
           })
-          .catch((error) => {
-            console.log("Fetching data error:", error);
-          });
       });
   }
 
-  private _processData(data) {
+  private _processData(data): Promise<any> {
     //Should check statuscode etc, but skipped that for now.
-
     let jsonToObject = data.json();
     //Possible checking if jsonToObject.json() worked ok, skipped for now.
     return this._save(jsonToObject);
   }
 
-  private _processError(error): void {
+  private _processError(error): Promise<string> {
     console.log("Error:", error);
+    return Promise.reject("De data kon niet geladen worden.");
   }
 
-  private _save(data) {
+  private _save(data): Promise<any> {
     let stringData = JSON.stringify(data);
     return this._isStorageReady()
       .then(() => {
-        return this.storage.set("departmentContacts", stringData).then((successData) => {
-          this.departmentContacts = data;
+        return this.storage.set(storageKey, stringData).then((value) => {
           return data;
         })
         .catch((error) => {
@@ -69,14 +78,14 @@ export class ContactServiceProvider {
       });
   }
 
-  private _isStorageReady(): Promise<void> {
+  private _isStorageReady(): Promise<any> {
     return this.storage.ready()
       .then((storageInfo) => {
           console.log("Storage info:", storageInfo);
           });
   }
 
-  getContactDetails(deptId, index): object {
+  public getContactDetails(deptId, index): object {
     //no check required if data exists because otherwise you can't get to the details page
     let department = this.departmentContacts[deptId];
     let returnObj: object = {};

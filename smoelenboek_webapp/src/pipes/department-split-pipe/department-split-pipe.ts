@@ -32,7 +32,7 @@ export class DepartmentSplitPipe implements PipeTransform {
           keys.push(contactObj);
         }
       }
-      console.log("pipe result:", keys);
+      // console.log("pipe result:", keys);
       return keys;
   }
 }
