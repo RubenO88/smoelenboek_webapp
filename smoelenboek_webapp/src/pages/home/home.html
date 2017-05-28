@@ -10,12 +10,8 @@
 
   <ion-list [virtualScroll]="departmentContacts | departmentSplitPipe"
             [headerFn]="getHeaderData" approxItemHeight="75px" approxHeaderHeight="43px">
-    <!--<ion-item *ngIf="isLoading">-->
-    <!--<ion-spinner name='crescent' item-start></ion-spinner>-->
-    <!--<p>Contacten laden</p>-->
-    <!--</ion-item>-->
 
-    <ion-item-divider color="light" text-capitalize *virtualHeader="let header">{{header}}
+    <ion-item-divider color="light" *virtualHeader="let header">{{header}}
     </ion-item-divider>
 
     <button ion-item detail-none *virtualItem="let contact"
@@ -24,11 +20,15 @@
         <img
           src="http://fanaru.com/the-hobbit-an-unexpected-journey/image/93544-the-hobbit-an-unexpected-journey-gollum-avatar.jpg">
       </ion-avatar>
-      <h2 class="nameLabel">{{contact.data.firstname + ' ' + contact.data.lastname}}</h2>
-      <button (click)="sendMail($event, contact.data.emailaddress)" item-end ion-button icon-only clear large>
+      <h2 class="nameLabel">{{contact.data.firstName + ' ' + contact.data.lastName}}</h2>
+      <button (click)="sendMail($event, contact.data.emailAddress)" item-end ion-button icon-only clear large>
         <ion-icon name="mail"></ion-icon>
       </button>
     </button>
   </ion-list>
+  <ion-item *ngIf="isLoading">
+    <ion-spinner name='crescent' item-start></ion-spinner>
+    <p>Contacten laden</p>
+  </ion-item>
 
 </ion-content>

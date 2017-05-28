@@ -23,7 +23,7 @@
         <img src="http://fanaru.com/the-hobbit-an-unexpected-journey/image/93544-the-hobbit-an-unexpected-journey-gollum-avatar.jpg">
       </ion-col>
       <ion-col class="button-col">
-        <button ion-fab color="danger" (click)="sendMail($event, contactInfo.emailaddress)">
+        <button ion-fab color="danger" (click)="sendMail($event, contactInfo.emailAddress)">
           <ion-icon name="mail"></ion-icon>
         </button>
       </ion-col>
@@ -38,9 +38,9 @@
       </ion-col>
       <ion-col class="wrap-details">
         <div>{{department}}</div>
-        <div>{{contactInfo.firstname}}</div>
-        <div>{{contactInfo.lastname}}</div>
-        <div>{{contactInfo.emailaddress}}</div>
+        <div>{{contactInfo.firstName}}</div>
+        <div>{{contactInfo.lastName}}</div>
+        <div>{{contactInfo.emailAddress}}</div>
       </ion-col>
     </ion-row>
   </ion-grid>
