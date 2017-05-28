@@ -6,6 +6,10 @@ import { Pipe, PipeTransform } from '@angular/core';
  * See https://angular.io/docs/ts/latest/guide/pipes.html for more info on
  * Angular Pipes.
  */
+const imagePath: string = "./assets/profile-pics/profile";
+const imageExt: string = ".jpg";
+const imageCount: number = 6;
+
 @Pipe({
   name: 'departmentSplitPipe',
 })
@@ -22,13 +26,16 @@ export class DepartmentSplitPipe implements PipeTransform {
                             departmentId: departmentId,
                             showHeader: false,
                             data: contactsOfDepartment[contactIndex],
-                            index: contactIndex
+                            index: +contactIndex
                             };
           //if first in group, than show the header of that department
-          //for..in get's string indices
-          if (contactIndex === "0") {
+          //for..in get's string indices. so + parses it to an number
+          if (+contactIndex === 0) {
             contactObj.showHeader = true;
           }
+          //add the 6 available pictures to the photoUrl
+          contactObj.data.photoUrl = imagePath + (+contactIndex % imageCount) + imageExt;
+
           keys.push(contactObj);
         }
       }

@@ -16,6 +16,10 @@ page-contact {
     }
   }
 
+  .scroll-content {
+    overflow-y: auto;
+  }
+
    #avatar-row {
     justify-content: center;
     display: -webkit-flex;

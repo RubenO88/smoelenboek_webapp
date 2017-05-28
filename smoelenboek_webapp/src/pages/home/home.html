@@ -17,8 +17,7 @@
     <button ion-item detail-none *virtualItem="let contact"
               (click)="showDetailsModal($event, contact.departmentId, contact.index)">
       <ion-avatar item-start>
-        <img
-          src="http://fanaru.com/the-hobbit-an-unexpected-journey/image/93544-the-hobbit-an-unexpected-journey-gollum-avatar.jpg">
+        <img src={{contact.data.photoUrl}} alt="profile pic">
       </ion-avatar>
       <h2 class="nameLabel">{{contact.data.firstName + ' ' + contact.data.lastName}}</h2>
       <button (click)="sendMail($event, contact.data.emailAddress)" item-end ion-button icon-only clear large>

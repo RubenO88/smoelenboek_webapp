@@ -20,7 +20,7 @@
         </button>
       </ion-col>
       <ion-col col-auto>
-        <img src="http://fanaru.com/the-hobbit-an-unexpected-journey/image/93544-the-hobbit-an-unexpected-journey-gollum-avatar.jpg">
+        <img src={{contactInfo.photoUrl}} alt="profile pic">
       </ion-col>
       <ion-col class="button-col">
         <button ion-fab color="danger" (click)="sendMail($event, contactInfo.emailAddress)">
