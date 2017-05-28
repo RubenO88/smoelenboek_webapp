@@ -4,6 +4,7 @@ import { Storage} from '@ionic/storage';
 import 'rxjs/add/operator/toPromise';
 
 const storageKey: string = "departmentContacts";
+const apiEndPoint: string = "http://assessments.wearetriple.com";
 /*
   Generated class for the ContactServiceProvider provider.
 
@@ -25,7 +26,7 @@ export class ContactServiceProvider {
       .catch((error) => {
         console.log("Storage error:", error);
         console.log("Try api to get data...");
-        return this.http.get("api/api.php")
+        return this.http.get(apiEndPoint + "/api.php")
           .toPromise()
             .then(this._processData.bind(this))
             .catch(this._processError.bind(this));

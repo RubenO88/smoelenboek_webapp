@@ -1,18 +1,6 @@
-<ion-header>
-  <ion-navbar color="secondary">
-    <ion-title>
-      Medewerker
-    </ion-title>
-    <ion-buttons end>
-      <button ion-button icon-only (click)="closeModal()">
-        <ion-icon name="close"></ion-icon>
-      </button>
-    </ion-buttons>
-  </ion-navbar>
-</ion-header>
+<div no-padding class="opacity"(click)="closeModal()">
 
-<ion-content padding-vertical>
-  <ion-grid id="contact-item" no-padding>
+  <ion-grid id="contact-item" no-padding (click)="stopPropagation($event)" [style.bottom]="offsetY">
     <ion-row id="avatar-row" no-padding>
       <ion-col class="button-col">
         <button ion-fab color="primary" (click)="call()">
@@ -44,4 +32,4 @@
       </ion-col>
     </ion-row>
   </ion-grid>
-</ion-content>
+</div>

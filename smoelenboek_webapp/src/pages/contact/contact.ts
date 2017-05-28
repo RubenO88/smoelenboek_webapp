@@ -18,9 +18,9 @@ export class ContactPage {
   department: string;
 
   constructor(public viewCtrl: ViewController,
-              public navParams: NavParams,
-              public contactServiceProvider: ContactServiceProvider,
-              public alertCtrl: AlertController) {
+    public navParams: NavParams,
+    public contactServiceProvider: ContactServiceProvider,
+    public alertCtrl: AlertController) {
 
     //should add some checks to be sure data is available
     this.department = navParams.get("departmentId");
@@ -43,7 +43,11 @@ export class ContactPage {
   }
 
   sendMail(event, mailAddress) {
-      event.stopPropagation();
-      window.open("mailto:" + mailAddress);
-    }
+    event.stopPropagation();
+    window.open("mailto:" + mailAddress);
+  }
+
+  stopPropagation(event) {
+    event.stopPropagation();
+  }
 }

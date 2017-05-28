@@ -1,12 +1,5 @@
 {
   "name": "smoelenboek_webapp",
   "app_id": "",
-  "type": "ionic-angular",
-
-  "proxies": [
-    {
-      "path": "/api",
-      "proxyUrl": "http://assessments.wearetriple.com"
-    }
-  ]
+  "type": "ionic-angular"
 }
